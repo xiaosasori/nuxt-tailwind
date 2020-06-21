@@ -1,0 +1,11 @@
+/* purgecss start ignore */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+/* purgecss end ignore */
+@import 'tailwindcss/utilities';
+
+@responsive {
+  .custom-translate-x-0 {
+    transform: translateX(0);
+  }
+}

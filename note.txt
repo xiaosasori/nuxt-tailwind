@@ -1,0 +1,20 @@
+* Scrolling
+- Wrapper: flex flex-col
+  + Fixed header: flex-shrink-0
+  + Scoll element: flex-1 overflow-y-auto min-h-0
+  (opt) vertical: set wrapper h-full overflow-hidden. scroll el should be in div
+- text-truncate if leads to awkward width of other el. set w-0 to container
+- leading-none for badge, nav item
+- padding right lose when scroll -> set inline-flex
+
+// navbar
+nav.fixed.inset-y-0.left-0.z-30 lg:inset-auto lg:static lg:translate-x-0
+."sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
+ >button.lg:hidden@click="show=false"
+// overflow-hidden to fix rounded css in child element.
+.rounded-lg.shadow-lg>.rounded-lg.shadow-xs.overflow-hidden
+
+// when use line-height font-size just set on the near block element to avoid wrong height. Don't set it in inline element
+.text-sm.leading-5>a.font-semibold.inline-flex.items-center // inline-flex may make height odd => use flex
+
+- h-full not work => user min-h-full
