@@ -14,59 +14,71 @@
 </template>
 
 <script>
+import {isEqual} from 'lodash-es'
 export default {
   props: {
     tag: {
       type: String,
       default: 'div'
     },
+    mode: {
+      default: 'cut',
+      validator: function (value) {
+        return ['cut', 'copy'].includes(value)
+      }
+    },
     draggable: {
       type: Boolean,
       default: true
     },
-    transferData: {
-      type: Object,
-      required: true
+    dropable: {
+      type: Boolean,
+      default: true
     },
+    dataTransfer: Object,
     dropEffect: {
       default: 'move',
       validator: function (value) {
-        return value in ['copy', 'move', 'link', 'none']
+        return ['copy', 'move', 'link', 'none'].includes(value)
       }
     },
     effectsAllowed: {
       default: 'move',
       validator: function (value) {
-        return value in [
+        return [
           'none', 'copy', 'copyLink', 'copyMove', 'link', 'linkMove', 'move', 'all',
           'uninitialized',
-        ]
+        ].includes(value)
       }
     },
     offset: {
       type: Object,
       default: () => ({top: 5, bottom: 5, left: 5, right: 5})
+    },
+    ghostClass: {
+      type: String,
+      default: 'ghost-item'
     }
+  },
+  computed: {
+    
   },
   methods: {
     onDrag (e) {
-      // this.$emit('drag', {task: this.content, columnIndex: this.transferData.fromColumnIndex, taskIndex: this.transferData.fromTaskIndex})
       e.dataTransfer.effectAllowed = this.effectsAllowed
       e.dataTransfer.dropEffect = this.dropEffect
-      e.dataTransfer.setData('payload', JSON.stringify(this.transferData))
+      e.dataTransfer.setData('draggingItem', JSON.stringify(this.dataTransfer))
+      if (this.mode === 'cut') this.$emit('remove', this.dataTransfer)
     },
     onDrop (e) {
-      const transferData = JSON.parse(e.dataTransfer.getData('payload'))
-      this.$emit('drop', {from: transferData, to: this.transferData})
+      const dataTransfer = JSON.parse(e.dataTransfer.getData('draggingItem'))
+      this.$emit('drop', {event: e, from: dataTransfer, to: this.dataTransfer})
     },
     dragEnter (e) {
-      const transferData = JSON.parse(e.dataTransfer.getData('payload'))
-      const offsetTop = this.$el.getBoundingClientRect().top + this.offset.top
-      const offsetBot = this.$el.getBoundingClientRect().bottom - this.offset.bottom
-      const offsetLeft = this.$el.getBoundingClientRect().left + this.offset.left
-      const offsetRight = this.$el.getBoundingClientRect().right - this.offset.right
-      if (e.clientY > offsetTop && e.clientY < offsetBot && e.clientX > offsetLeft && e.clientX < offsetRight)
-        this.$emit('dragEnter', {columnIndex: this.transferData.fromColumnIndex, taskIndex: this.transferData.fromTaskIndex})
+      const draggingData = JSON.parse(e.dataTransfer.getData('draggingItem'))
+      const offset = this.getOffset()
+      if (e.clientY > offset.top && e.clientY < offset.bottom && e.clientX > offset.left && e.clientX < offset.right)
+        this.$emit('dragEnter', {from: draggingData, to: this.dataTransfer})
     },
     dragOver () {
       this.$emit('dragOver')
@@ -76,6 +88,13 @@ export default {
     },
     dragEnd () {
       this.$emit('dragEnd')
+    },
+    getOffset () {
+      const top = this.$el.getBoundingClientRect().top + this.offset.top
+      const bottom = this.$el.getBoundingClientRect().bottom - this.offset.bottom
+      const left = this.$el.getBoundingClientRect().left + this.offset.left
+      const right = this.$el.getBoundingClientRect().right - this.offset.right
+      return {top, bottom, left, right}
     }
   }
 }

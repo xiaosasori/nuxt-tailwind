@@ -281,45 +281,21 @@
       </div>
       <div class="flex-1 overflow-auto">
         <main class="inline-flex h-full p-3 overflow-hidden">
-          <!-- Blacklog -->
-          <div
+          <BoardColumn
             v-for="(column, columnIndex) in data"
             :key="columnIndex"
-            class="flex flex-col flex-shrink-0 ml-3 bg-gray-100 rounded-md w-80"
-          >
-            <h3
-              class="flex-shrink-0 px-3 pt-3 pb-1 text-sm font-medium text-gray-700"
-            >{{column.name}}</h3>
-            <div class="flex-1 min-h-0 overflow-y-auto">
-              <ul class="px-3 pt-1 pb-3">
-                <Card
-                  v-for="(i, taskIndex) in column.tasks"
-                  :key="taskIndex"
-                  :class="{'mt-3': taskIndex > 0}"
-                  :content="i"
-                  :transferData="{
-                    type: 'TASK',
-                    fromColumnIndex: columnIndex,
-                    fromTaskIndex: taskIndex}"
-                  @drop="handle"
-                  @drag="onDrag"
-                  @dragEnter="dragEnter"
-                  @dragEnd="dragEnd"
-                  @dragLeave="dragLeave"
-                  :ref="`col${columnIndex}`"
-                />
-              </ul>
-            </div>
-          </div>
+            :column="column"
+            :columnIndex="columnIndex"
+          />
         </main>
       </div>
     </div>
   </div>
 </template>
 <script>
-import Card from '@/components/kanban/card'
+import BoardColumn from '@/components/kanban/BoardColumn'
 export default {
-  components: {Card},
+  components: {BoardColumn},
   data() {
     return {
       sidebarOpen: false,
@@ -328,37 +304,6 @@ export default {
       currentEnteringTask: {taskIndex: -1, columnIndex: -1},
       newItem: null
     }
-  },
-  watch: {
-    // currentEnteringTask: {
-    //   handler: function (newVal, oldVal) {
-    //         console.log(oldVal.columnIndex, oldVal.taskIndex, newVal.columnIndex, newVal.taskIndex)
-    //     if (newVal.taskIndex === -1) return
-    //     // If drag enter new postion
-    //     if (oldVal.taskIndex !== newVal.taskIndex || oldVal.columnIndex !== newVal.columnIndex) {
-    //         // remove old ghost item
-    //         if (oldVal.columnIndex !== -1) {
-    //           // remove current ghost item if drag enter another position
-    //           console.log('remove', oldVal.taskIndex)
-    //           this.data[oldVal.columnIndex].tasks.splice(oldVal.taskIndex, 1)
-    //         } else {
-    //           // remove current ghost item if drag enter back to original position
-    //           console.log('remove dragging', this.draggingItem.columnIndex)
-    //           this.data[this.draggingItem.columnIndex].tasks.splice(this.draggingItem.taskIndex, 1)
-    //         }
-    //         if (this.newItem) {
-    //           this.newItem.classList.remove('ghost-item')
-    //         }
-    //         // add ghost item to current position
-    //         this.data[newVal.columnIndex].tasks.splice(newVal.taskIndex, 0, this.draggingItem.task)
-    //         // add class for ghost item
-    //         this.newItem = this.$refs[`col${newVal.columnIndex}`][newVal.taskIndex].$el
-    //         this.newItem.classList.add('ghost-item')
-    //         console.log('newI', this.newItem)
-    //     }
-    //   },
-    //   deep: true
-    // }
   },
   methods: {
     onDrag (e) {
@@ -373,8 +318,10 @@ export default {
       // console.log(originalItemIndex)
       // this.currentEnteringTask = {columnIndex: -1, taskIndex: -1}
     },
-    dragEnter (newVal) {
-      const oldVal = this.currentEnteringTask
+    dragEnter (payload) {
+      console.log('dragenter')
+      return
+      const oldVal = payload. this.currentEnteringTask
       if (oldVal.taskIndex !== newVal.taskIndex || oldVal.columnIndex !== newVal.columnIndex) {
         // remove current ghost item if drag enter another position
         console.log('remove', oldVal.taskIndex)

@@ -10,20 +10,20 @@
       <slot name="trigger" :hasFocus="buttonHasFocus" :isOpen="isOpen"></slot>
     </button>
     <transition
-      enter-active-class="transition-all transition-fastest ease-out-quad"
-      leave-active-class="transition-all transition-faster ease-in-quad"
+      enter-active-class="transition-all duration-75 ease-out"
+      leave-active-class="transition-all duration-100 ease-in"
       enter-class="opacity-0 scale-70"
-      enter-to-class="opacity-100 scale-100"
-      leave-class="opacity-100 scale-100"
+      enter-to-class="scale-100 opacity-100"
+      leave-class="scale-100 opacity-100"
       leave-to-class="opacity-0 scale-70"
     >
-      <div :class="[isOpen ? 'block' : 'hidden']">
+      <div v-show="isOpen">
         <button
           @click="isOpen = false"
           type="button"
-          class="z-30 block fixed inset-0 w-full h-full cursor-default"
+          class="fixed inset-0 block w-full h-full cursor-default focus:outline-none"
         ></button>
-        <div class="absolute z-40 right-0">
+        <div class="absolute" :class="containerClass">
           <slot name="dropdown"></slot>
         </div>
       </div>
@@ -33,7 +33,12 @@
 
 <script>
 export default {
-  props: [],
+  props: {
+    containerClass: {
+      type: String,
+      default: 'right-0'
+    }
+  },
   data() {
     return {
       buttonHasFocus: false,
@@ -60,3 +65,11 @@ export default {
   },
 }
 </script>
+<style scoped>
+.scale-70 {
+  transform: scale(0.7);
+}
+.scale-100 {
+  transform: scale(1);
+}
+</style>

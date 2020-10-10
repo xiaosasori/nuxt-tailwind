@@ -4,27 +4,27 @@
       <transition
         @before-leave="backdropLeaving = true"
         @after-leave="backdropLeaving = false"
-        enter-active-class="transition-all transition-fast ease-out-quad"
-        leave-active-class="transition-all transition-medium ease-in-quad"
+        enter-active-class="transition-all duration-150 ease-out"
+        leave-active-class="transition-all duration-200 ease-in"
         enter-class="opacity-0"
         enter-to-class="opacity-100"
         leave-class="opacity-100"
         leave-to-class="opacity-0"
         appear
       >
-        <div v-if="showBackdrop">
-          <div class="absolute inset-0 bg-black opacity-25" @click="close"></div>
+        <div v-if="!hideOverlay && showContent">
+          <div class="absolute inset-0 bg-black opacity-25" @click="!persistent && close()"></div>
         </div>
       </transition>
 
       <transition
         @before-leave="cardLeaving = true"
         @after-leave="cardLeaving = false"
-        enter-active-class="transition-all transition-fast ease-out-quad"
-        leave-active-class="transition-all transition-medium ease-in-quad"
+        enter-active-class="transition-all duration-150 ease-out"
+        leave-active-class="transition-all duration-200 ease-in"
         enter-class="opacity-0 scale-70"
-        enter-to-class="opacity-100 scale-100"
-        leave-class="opacity-100 scale-100"
+        enter-to-class="scale-100 opacity-100"
+        leave-class="scale-100 opacity-100"
         leave-to-class="opacity-0 scale-70"
         appear
       >
@@ -38,11 +38,14 @@
 
 <script>
 export default {
-  props: ['open'],
+  props: {
+    open: Boolean,
+    hideOverlay: Boolean,
+    persistent: Boolean
+  },
   data() {
     return {
       showModal: false,
-      showBackdrop: false,
       showContent: false,
       backdropLeaving: false,
       cardLeaving: false,
@@ -72,6 +75,7 @@ export default {
     },
     leaving(newValue) {
       if (newValue === false) {
+        // close modal when leaving animation finished
         this.showModal = false
         this.$emit('close')
       }
@@ -85,11 +89,9 @@ export default {
   methods: {
     show() {
       this.showModal = true
-      this.showBackdrop = true
       this.showContent = true
     },
-    close() {
-      this.showBackdrop = false
+    close() { // start closing animation
       this.showContent = false
     }
   }

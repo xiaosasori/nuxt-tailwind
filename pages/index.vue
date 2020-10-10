@@ -1,6 +1,42 @@
 <template>
   <div>
-    <Dropdown />
+    <Dropdown class="inline-block">
+      <template #trigger>
+        <span class="flex items-center">
+          <img
+            src="https://github.com/adamwathan.png"
+            alt="Adam Wathan's avatar"
+            class="w-8 h-8 rounded-full"
+          />
+          <span class="ml-2 font-medium">Adam Wathan</span>
+          <svg
+            class="w-5 h-5 ml-1 text-gray-700 fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"
+            />
+          </svg>
+        </span>
+      </template>
+      <template #dropdown>
+        <ul class="py-2 mt-2 origin-top-right bg-white border rounded-lg shadow-md">
+          <li>
+            <a href="#" class="block px-4 py-2 hover:bg-indigo-500 hover:text-white">Profile</a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block px-4 py-2 hover:bg-indigo-500 hover:text-white"
+            >Account settings</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 hover:bg-indigo-500 hover:text-white">Sign out</a>
+          </li>
+        </ul>
+      </template>
+    </Dropdown>
     <div class="flex items-center justify-center">
       <div class="px-6 py-6 bg-white rounded-lg shadow-md">
         <h2
