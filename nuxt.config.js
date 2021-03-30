@@ -1,6 +1,6 @@
 
 export default {
-  mode: 'spa',
+  target: 'static',
   /*
   ** Headers of the page
   */
@@ -33,10 +33,15 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    // https://github.com/nuxt/postcss8
+    '@nuxt/postcss8',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
 
   ],
+  tailwindcss: {
+    jit: true
+  },
   /*
   ** Nuxt.js modules
   */

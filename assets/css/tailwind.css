@@ -4,6 +4,14 @@
 /* purgecss end ignore */
 @import 'tailwindcss/utilities';
 
+@layer utilities {
+  @responsive {
+    .scrollbar-hidden::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
 @responsive {
   .custom-translate-x-0 {
     transform: translateX(0);

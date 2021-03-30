@@ -111,7 +111,7 @@
               </span>
             </template>
             <template #dropdown>
-              <div class="w-48 py-2 mt-3 bg-white rounded-lg shadow-xl xl:border">
+              <div class="relative z-10 w-48 py-2 mt-3 bg-white rounded-lg shadow-xl xl:border">
                 <a
                   href="#account"
                   class="block px-4 py-2 text-gray-800 hover:text-white hover:bg-indigo-500"

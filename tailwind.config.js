@@ -4,6 +4,7 @@
 ** Docs: https://tailwindcss.com/docs/configuration
 ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
 */
+const colors = require('tailwindcss/colors')
 module.exports = {
   theme: {
     extend: {
@@ -39,6 +40,10 @@ module.exports = {
       },
       padding: {
         '5/6': '83.3333333%'
+      },
+      colors: {
+        lime: colors.lime,
+        gray: colors.trueGray
       }
     },
     customForms: theme => ({
