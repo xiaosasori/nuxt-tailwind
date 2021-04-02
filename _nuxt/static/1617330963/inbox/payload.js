@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/inbox", {data:[{}],fetch:{},mutations:void 0});

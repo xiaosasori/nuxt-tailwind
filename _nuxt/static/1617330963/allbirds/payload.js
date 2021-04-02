@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/allbirds", {data:[{}],fetch:{},mutations:void 0});
