@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/netflix", {data:[{}],fetch:{},mutations:void 0});

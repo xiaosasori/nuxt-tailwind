@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/slide", {data:[{}],fetch:{},mutations:void 0});
