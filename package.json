@@ -13,7 +13,8 @@
   "dependencies": {
     "lodash-es": "^4.17.15",
     "nuxt": "^2.15.3",
-    "portal-vue": "^2.1.7"
+    "portal-vue": "^2.1.7",
+    "swiper": "^6.5.3"
   },
   "devDependencies": {
     "@nuxt/postcss8": "^1.1.3",

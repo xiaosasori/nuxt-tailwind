@@ -8,10 +8,7 @@
       <div v-show="show" class="fixed inset-y-0 left-0 z-50">
         <button @click="show = false" class="fixed inset-0 w-full cursor-default" aria-hidden></button>
         <div class="relative flex flex-col justify-center h-full space-y-2 text-white bg-gray-900">
-          <nuxt-link class="px-4 py-2 text-lg font-semibold transition hover:bg-gray-400 hover:bg-opacity-50" to="/workcation">Workcation</nuxt-link>
-          <nuxt-link class="px-4 py-2 text-lg font-semibold transition hover:bg-gray-400 hover:bg-opacity-50" to="/allbirds">Allbirds</nuxt-link>
-          <nuxt-link class="px-4 py-2 text-lg font-semibold transition hover:bg-gray-400 hover:bg-opacity-50" to="/kanban">Kanban</nuxt-link>
-          <nuxt-link class="px-4 py-2 text-lg font-semibold transition hover:bg-gray-400 hover:bg-opacity-50" to="/inbox">Inbox</nuxt-link>
+          <nuxt-link class="px-4 py-2 text-lg font-semibold transition hover:bg-gray-400 hover:bg-opacity-50" v-for="nav in navs" :key="nav.name" :to="nav.path">{{nav.name}}</nuxt-link>
         </div>
       </div>
     </transition>
@@ -21,7 +18,14 @@
 export default {
   data() {
     return {
-      show: false
+      show: false,
+      navs: [
+        {name: 'Workcation', path: '/workcation'},
+        {name: 'Allbirds', path: '/allbirds'},
+        {name: 'Kanban', path: '/kanban'},
+        {name: 'Inbox', path: '/inbox'},
+        {name: 'Netflix', path: '/netflix'},
+      ]
     }
   }
 }
