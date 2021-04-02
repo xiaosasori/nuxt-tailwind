@@ -1,11 +1,21 @@
 
 export default {
-  mode: 'spa',
+  ssr: false,
+  target: 'static',
+  router: {
+    base: '/nuxt-tailwind/'
+  },
+  static: {
+    prefix: '/nuxt-tailwind/'
+  },
   /*
   ** Headers of the page
   */
   head: {
     title: process.env.npm_package_name || '',
+    htmlAttrs: {
+      lang: 'en'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -52,10 +62,5 @@ export default {
   ** Build configuration
   */
   build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend(config, ctx) {
-    }
   }
 }

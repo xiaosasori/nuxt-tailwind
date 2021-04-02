@@ -25,6 +25,7 @@ export default {
         {name: 'Kanban', path: '/kanban'},
         {name: 'Inbox', path: '/inbox'},
         {name: 'Netflix', path: '/netflix'},
+        {name: 'Coca', path: '/coca'},
       ]
     }
   }
