@@ -1,8 +1,8 @@
 <template>
-<div class="bg-gray-900 min-h-screen">
-  <header class="absolute top-0 left-0 w-full flex justify-between items-center py-8 px-24 z-20">
-      <a href="#" class="logo"><img src="/netflix-logo.png" alt="netlix logo"></a>
-      <ul class="navigation flex">
+<div class="min-h-screen bg-gray-900">
+  <header class="absolute top-0 left-0 z-20 flex items-center justify-between w-full px-24 py-8">
+      <a href="#" class="logo"><img src="~/static/netflix-logo.png" alt="netlix logo"></a>
+      <ul class="flex navigation">
           <li><a href="#">Home</a></li>
           <li><a href="#">TV Shows</a></li>
           <li><a href="#">Movies</a></li>
@@ -11,13 +11,13 @@
       </ul>
       <div class="search">
           <input type="text" placeholder="Search">
-          <svg class="w-6 h-6 absolute top-1/2 pr-2 left-2 border-r transform -translate-y-1/2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <svg class="absolute w-6 h-6 pr-2 text-white transform -translate-y-1/2 border-r top-1/2 left-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
       </div>
   </header>
   <div class="banner">
       <div class="layer"></div>
       <div class="content">
-          <img src="mulan-text.png" class="movieTitle" alt="mulan text">
+          <img src="~/static/mulan-text.png" class="movieTitle" alt="mulan text">
           <h4>
               <span>2020</span>
               <span><i>12+</i></span>
@@ -26,24 +26,24 @@
           </h4>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, quis corrupti ad iure voluptatum eveniet ex. Temporibus id porro ducimus. Tempora dolore architecto iste. Repellat a cumque culpa ratione maiores.</p>
           <div class="buttons">
-              <a href="#" @click="toggleVideo" class="inline-flex space-x-2 py-2 px-4 rounded">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>  
+              <a href="#" @click="toggleVideo" class="inline-flex px-4 py-2 space-x-2 rounded">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                   <span>Play</span>
                 </a>
-              <a href="#" class="inline-flex space-x-2 py-2 px-4 rounded">
+              <a href="#" class="inline-flex px-4 py-2 space-x-2 rounded">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                 <span>My List</span>
             </a>
           </div>
       </div>
-      <a href="#" class="play space-x-2">
+      <a href="#" class="space-x-2 play">
           <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <span>Watch Trailer</span>
       </a>
   </div>
   <div v-if="show" class="trailer">
       <video ref="video" controls="true" autoplay="false" src="http://media.w3.org/2010/05/sintel/trailer.mp4"></video>
-      <svg @click="close" class="close w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      <svg @click="close" class="w-12 h-12 close" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
   </div>
 </div>
 </template>
@@ -114,7 +114,7 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-image: url('/mulan.jpeg');
+    background-image: url('~/static/mulan.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;

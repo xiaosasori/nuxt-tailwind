@@ -3,10 +3,10 @@ export default {
   ssr: false,
   target: 'static',
   router: {
-    base: '/nuxt-tailwind/'
+    base: process.env.NODE_ENV === 'development' ? '/' : '/nuxt-tailwind/'
   },
   static: {
-    prefix: '/nuxt-tailwind/'
+    prefix: false
   },
   /*
   ** Headers of the page
