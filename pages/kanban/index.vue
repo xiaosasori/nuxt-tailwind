@@ -293,7 +293,7 @@
   </div>
 </template>
 <script>
-import BoardColumn from '@/components/kanban/BoardColumn'
+import BoardColumn from './BoardColumn'
 export default {
   components: {BoardColumn},
   data() {
@@ -665,13 +665,13 @@ const data = [
     content: '{{lorem(1, "paragraphs")}}',
     type: '{{random(0, 1, 2)}}',
     date: '{{date(new Date(2020, 0, 1), new Date(), "MMM dd YYYY")}}',
-    
+
     name: '{{firstName()}} {{surname()}}',
     avatar: function() {
     	return 'https://identicon-api.herokuapp.com/' + this.name + '/100?format=png'
     }
   }
-] 
+]
 https://www.json-generator.com/
 */
 </script>

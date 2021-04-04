@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import TaskColumn from '@/components/kanban/TaskColumn'
+import TaskColumn from './TaskColumn'
 
 export default {
   data () {

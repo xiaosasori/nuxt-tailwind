@@ -21,9 +21,9 @@ export default {
       show: false,
       navs: [
         {name: 'Workcation', path: '/workcation'},
-        {name: 'Allbirds', path: '/allbirds'},
         {name: 'Kanban', path: '/kanban'},
         {name: 'Inbox', path: '/inbox'},
+        {name: 'Allbirds', path: '/allbirds'},
         {name: 'Netflix', path: '/netflix'},
         {name: 'Coca', path: '/coca'},
       ]

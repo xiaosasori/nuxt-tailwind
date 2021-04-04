@@ -1,16 +1,5 @@
 <template>
-  <DragDrop
-    tag="li"
-    :draggable="true"
-    :dataTransfer="{
-      type: 'task',
-      columnIndex: columnIndex,
-      taskIndex: taskIndex,
-      value: item
-    }"
-    @remove="$emit('remove', $event)"
-    @dragEnter="dragEnter"
-  >
+  <li>
     <div class="block p-5 bg-white rounded-md shadow">
       <div class="flex justify-between">
         <p class="text-sm font-semibold leading-snug text-gray-900">{{item.title}}</p>
@@ -32,30 +21,15 @@
         </div>
       </div>
     </div>
-  </DragDrop>
+  </li>
 </template>
 
 <script>
-import DragDrop from './DragDrop'
 export default {
-  components: {DragDrop},
   props: {
     item: {
       type: Object,
       required: true
-    },
-    taskIndex: {
-      type: Number,
-      required: true
-    },
-    columnIndex: {
-      type: Number,
-      required: true
-    }
-  },
-  methods: {
-    dragEnter($event) {
-      this.$emit('dragEnter', $event)
     }
   }
 }
