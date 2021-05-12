@@ -22,7 +22,7 @@
     "@tailwindcss/custom-forms": "^0.2.1",
     "@tailwindcss/jit": "^0.1.7",
     "node-sass": "^4.14.1",
-    "postcss": "^8.2.8",
+    "postcss": "^8.2.10",
     "sass-loader": "^10.0.2",
     "tailwindcss": "^2.0.4"
   }
